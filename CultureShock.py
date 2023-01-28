@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 
 with open("index.html") as fp:
-    soup = BeautifulSoup(fp, "lxml")
+    soup = BeautifulSoup(fp, 'html.parser')
 
-#soup = BeautifulSoup
- 
-from selenium import webdriver
-PATH = "C:\Program Files (x86)\chromedriver.exe"
+soup = BeautifulSoup("<html>a web page</html>", 'html.parser')
+
+print(BeautifulSoup("<html><head></head><body>Sacr&eacute; bleu!</body></html>", "html.parser"))
+# <html><head></head><body>Sacré bleu!</body></html>
