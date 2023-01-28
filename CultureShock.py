@@ -1,6 +1,9 @@
 import csv
 import random
-
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+from selenium.webdriver.common.by import By
 # file I/O for countries.csv also receive random country for the week
 countryList = []
 
@@ -14,3 +17,14 @@ with open('countries.csv', 'r') as countries:
     
 countryName = random.choice(countryList)
 
+#Path is where the chrome driver is located
+PATH = "C:\Program Files (x86)\chromedriver.exe"
+driver = webdriver.Chrome(PATH)
+driver.maximize_window()
+
+driver.get("https://www.worldcountriesforkids.com/" + countryName + "/")
+fact = driver.find_element(By.CLASS_NAME,"brief-history-left").text
+print(fact)
+
+
+driver.quit()
