@@ -17,6 +17,8 @@ with open('countries.csv', 'r') as countries:
     
 countryName = random.choice(countryList)
 
+print(countryName)
+
 #Path is where the chrome driver is located
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
@@ -53,9 +55,17 @@ food_list = []
 
 #index of the link start
 link_index_start = temp.find("img src=")
-link_index_end = temp.find(".png")
+if (temp.find(".jng") == -1):
+    link_index_end = temp.find(".png")
+if (temp.find(".png") == -1):
+    link_index_end = temp.find(".jng")
+if (temp.find(".png") != -1 & temp.find(".jng") != -1):
+    if (temp.find(".png") > temp.find(".jng")):
+        link_index_end = temp.find(".jng")
+    else:
+        link_index_end = temp.find(".png")
+
 food_list.append(temp[link_index_start + 9:link_index_end + 4:1])
-print(countryName)
 print(food_list)
 
 #index of the description start
