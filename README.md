@@ -1,4 +1,3 @@
 "# exploring-the-unknown" 
-Aayesha
-Alan
-Derek
+Culture Shock
+An immersive webapp which lets you expand your knowledge on the various cultures around campus.
