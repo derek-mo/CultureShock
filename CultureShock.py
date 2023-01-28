@@ -16,22 +16,21 @@ countryName = random.choice(countryList)
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time
 from selenium.webdriver.common.by import By
+import time
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
 driver.maximize_window()
 
-driver.get("https://www.worldcountriesforkids.com/ethiopia/%22)
-#print(driver.page_source)
-fact = driver.find_element(By.CSS_SELECTOR, 'p.brief-history-left')
-print(fact)
+driver.get("https://open.spotify.com/search/" + countryName + "/playlists")
+# input = driver.find_element(By.TAG_NAME, 'input')
+# input.send_keys('Japan')
+#input.send_keys(Keys.ENTER)
 
-#search = driver.find_element("name","q")
-#search.send_keys("fun facts about china")
-#search.send_keys(Keys.RETURN)
+#input = driver.find_element(By.XPATH, '//a[@href]')
+#input.click()
+#print(input)
 
-link = driver.find_element()
 time.sleep(10)
 driver.quit()
