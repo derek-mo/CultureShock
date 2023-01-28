@@ -1,9 +1,16 @@
-from bs4 import BeautifulSoup
+import csv
+import random
 
-with open("index.html") as fp:
-    soup = BeautifulSoup(fp, 'html.parser')
+# file I/O for countries.csv also receive random country for the week
+countryList = []
 
-soup = BeautifulSoup("<html>a web page</html>", 'html.parser')
+with open('countries.csv', 'r') as countries:
+    csv_reader = csv.reader(countries)
+    
+    next(csv_reader)
 
-print(BeautifulSoup("<html><head></head><body>Sacr&eacute; bleu!</body></html>", "html.parser"))
-# <html><head></head><body>Sacré bleu!</body></html>
+    for line in csv_reader:
+        countryList.append(line[1])
+    
+countryName = random.choice(countryList)
+
