@@ -45,10 +45,9 @@ food = driver.page_source
 temp = ""
 for i in range (0, len(food) - 4):
     if (food[i] == 'C') & (food[i+1] == 'u') & (food[i+2] == 'i') & (food[i+3] == 's') & (food[i + 4] == 'i'):
-        for x in range (-500,700):
+        for x in range (-300,700):
             temp = temp + food[i + x]
         break
-
 #creating a list to store the data in: link, cuisine, description, and link description
 food_list = []
 
@@ -56,6 +55,7 @@ food_list = []
 link_index_start = temp.find("img src=")
 link_index_end = temp.find(".png")
 food_list.append(temp[link_index_start + 9:link_index_end + 4:1])
+print(countryName)
 print(food_list)
 
 #index of the description start
