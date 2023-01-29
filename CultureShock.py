@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+
 # file I/O for countries.csv also receive random country for the week
 countryList = []
 
@@ -21,9 +23,9 @@ print(countryName)
 
 #Path is where the chrome driver is located
 PATH = "C:\Program Files (x86)\chromedriver.exe"
-driver = webdriver.Chrome(PATH)
-driver.maximize_window()
-
+options = Options()
+options.add_argument("--headless")
+driver = webdriver.Chrome(PATH, options=options)
 driver.get("https://www.worldcountriesforkids.com/" + countryName + "/")
 fact = driver.find_element(By.CLASS_NAME,"brief-history-left").text
 fact_list = []
@@ -82,6 +84,6 @@ food_description_end = temp1[food_description_start + 3: len(temp1) : 1].find("<
 #food list list is in the format
 #link url, description of the food
 food_list.append(temp1[food_description_start: food_description_end:1])
-
+print(fact_sheet)
 #quit the driver
 driver.quit()
