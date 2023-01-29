@@ -49,7 +49,6 @@ input = driver.find_element(By.XPATH, '//a[@title=\"Top 50 - ' + countryName + '
 playlistLink = input
 print(playlistLink)
 
-=======
 driver.get("https://www.worldcountriesforkids.com/" + countryName + "/")
 fact = driver.find_element(By.CLASS_NAME,"brief-history-left").text
 fact_list = []
