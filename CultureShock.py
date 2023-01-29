@@ -82,6 +82,6 @@ food_description_end = temp1[food_description_start + 3: len(temp1) : 1].find("<
 #food list list is in the format
 #link url, description of the food
 food_list.append(temp1[food_description_start: food_description_end:1])
-
+print(fact_sheet)
 #quit the driver
 driver.quit()
