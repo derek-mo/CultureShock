@@ -1,5 +1,10 @@
 import csv
 import random
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+import time
 
 # file I/O for countries.csv also receive random country for the week
 countryList = []
@@ -14,23 +19,17 @@ with open('countries.csv', 'r') as countries:
     
 countryName = random.choice(countryList)
 
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-import time
-
 PATH = "C:\Program Files (x86)\chromedriver.exe"
-driver = webdriver.Chrome(PATH)
-driver.maximize_window()
+options = Options()
+options.add_argument("--headless")
+driver = webdriver.Chrome(PATH, options=options)
+
 
 driver.get("https://open.spotify.com/search/" + countryName + "/playlists")
-# input = driver.find_element(By.TAG_NAME, 'input')
-# input.send_keys('Japan')
-#input.send_keys(Keys.ENTER)
+time.sleep(3)
 
-#input = driver.find_element(By.XPATH, '//a[@href]')
-#input.click()
-#print(input)
+input = driver.find_element(By.XPATH, '//a[@title=\"Top 50 - ' + countryName + '\"]').get_attribute('href')
+playlistLink = input
+print(playlistLink)
 
-time.sleep(10)
 driver.quit()
