@@ -19,6 +19,24 @@ with open('countries.csv', 'r') as countries:
     
 countryName = random.choice(countryList)
 
+
+languageList = []
+
+with open('language.csv',encoding="utf8") as phrases:
+    csv_reader = csv.reader(phrases)
+
+    next(csv_reader)
+
+    for line in csv_reader:
+        if (line[1] == countryName):
+            languageList.append(line[0])
+            languageList.append(line[1])
+            languageList.append(line[2])
+            languageList.append(line[3])
+            languageList.append(line[4])
+            languageList.append(line[5])
+            languageList.append(line[6])
+
 #Path is where the chrome driver is located
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 options = Options()
