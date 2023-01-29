@@ -2,9 +2,9 @@ import csv
 import random
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-import time
 
 # file I/O for countries.csv also receive random country for the week
 countryList = []
@@ -18,7 +18,6 @@ with open('countries.csv', 'r') as countries:
         countryList.append(line[1])
     
 countryName = random.choice(countryList)
-
 languageList = []
 
 with open('language.csv',encoding="utf8") as phrases:
@@ -35,7 +34,6 @@ with open('language.csv',encoding="utf8") as phrases:
             languageList.append(line[4])
             languageList.append(line[5])
             languageList.append(line[6])
-
 #Path is where the chrome driver is located
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 options = Options()
@@ -47,9 +45,8 @@ time.sleep(3)
 
 input = driver.find_element(By.XPATH, '//a[@title=\"Top 50 - ' + countryName + '\"]').get_attribute('href')
 playlistLink = input
-print(playlistLink)
+#print(playlistLink)
 
-=======
 driver.get("https://www.worldcountriesforkids.com/" + countryName + "/")
 fact = driver.find_element(By.CLASS_NAME,"brief-history-left").text
 fact_list = []
@@ -108,6 +105,33 @@ food_description_end = temp1[food_description_start + 3: len(temp1) : 1].find("<
 #food list list is in the format
 #link url, description of the food
 food_list.append(temp1[food_description_start: food_description_end:1])
+print("THE COUNTRY OF THE WEEK IS: " + countryName)
+print("\n")
+print("This is the Spotify Playlist Link for The Top 50 songs of " + countryName)
+print(playlistLink)
+print("\n")
+print("Food options in " + countryName)
+for x in food_list:
+    print(x)
+print("\n")
+for x in fact_sheet:
+    print(x)
+print("\n")
+counter = 0
+for x in languageList:
+    if counter == 0:
+        print("The language they speak is " + x)
+    if counter == 2:
+        print("Hello is " + x + " in " + countryName)
+    if counter == 3:
+        print("Goodbye is " + x + " in " + countryName)
+    if counter == 4:
+        print("Thank you is " + x + " in " + countryName)
+    if counter == 5:
+        print("I have to go to the bathroom is" + x + " in " + countryName)
+    if counter == 6:
+        print("I'm hungry is " + x + " in " + countryName)
+    counter = counter + 1
 
 #quit the driver
 driver.quit()
