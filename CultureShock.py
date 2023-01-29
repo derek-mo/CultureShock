@@ -2,9 +2,9 @@ import csv
 import random
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+import time
 
 # file I/O for countries.csv also receive random country for the week
 countryList = []
@@ -18,7 +18,6 @@ with open('countries.csv', 'r') as countries:
         countryList.append(line[1])
     
 countryName = random.choice(countryList)
-
 
 languageList = []
 
@@ -42,6 +41,15 @@ PATH = "C:\Program Files (x86)\chromedriver.exe"
 options = Options()
 options.add_argument("--headless")
 driver = webdriver.Chrome(PATH, options=options)
+
+driver.get("https://open.spotify.com/search/" + countryName + "/playlists")
+time.sleep(3)
+
+input = driver.find_element(By.XPATH, '//a[@title=\"Top 50 - ' + countryName + '\"]').get_attribute('href')
+playlistLink = input
+print(playlistLink)
+
+=======
 driver.get("https://www.worldcountriesforkids.com/" + countryName + "/")
 fact = driver.find_element(By.CLASS_NAME,"brief-history-left").text
 fact_list = []
