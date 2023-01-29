@@ -45,37 +45,43 @@ for y in fact_list:
 #access food element
 food = driver.page_source
 temp = ""
+temp1 =""
+temp2 =""
 for i in range (0, len(food) - 4):
     if (food[i] == 'C') & (food[i+1] == 'u') & (food[i+2] == 'i') & (food[i+3] == 's') & (food[i + 4] == 'i'):
-        for x in range (-300,700):
-            temp = temp + food[i + x]
+        for x in range (-300,6900):
+            if (x > -1):
+                temp1 = temp1 + food[i + x]
+            else:
+                temp = temp + food[i + x]
         break
 #creating a list to store the data in: link, cuisine, description, and link description
 food_list = []
-
+#print(temp)
 #index of the link start
 link_index_start = temp.find("img src=")
-if (temp.find(".jng") == -1):
+if (temp.find(".jpg") == -1):
     link_index_end = temp.find(".png")
-if (temp.find(".png") == -1):
-    link_index_end = temp.find(".jng")
-if (temp.find(".png") != -1 & temp.find(".jng") != -1):
-    if (temp.find(".png") > temp.find(".jng")):
-        link_index_end = temp.find(".jng")
-    else:
-        link_index_end = temp.find(".png")
+else:
+    if (temp.find(".png") == -1):
+        link_index_end = temp.find(".jpg")
+    else :
+        if (temp.find(".png") != -1 & temp.find(".jpg") != -1):
+            if (temp.find(".png") > temp.find(".jpg")):
+                link_index_end = temp.find(".jpg")
+            else:
+                link_index_end = temp.find(".png")
+#print(link_index_start)
+#print(link_index_end)
 
 food_list.append(temp[link_index_start + 9:link_index_end + 4:1])
-print(food_list)
 
 #index of the description start
-food_description_start = temp.find("<p>")
-food_description_end = temp[food_description_start + 10: len(temp): 1].find("<p>")
-#print(temp[food_description_start:food_description_end:1])
-print(food_description_start)
-print(food_description_end)
-print(temp[food_description_start: food_description_end:1])
-#print(temp[food_description_start: food_description_end:1])
-#print(temp)
+food_description_start = temp1.find("<p>") + 3
+food_description_end = temp1[food_description_start + 3: len(temp1) : 1].find("</p>") + food_description_start +3
+#food list list is in the format
+#link url, description of the food
+food_list.append(temp1[food_description_start: food_description_end:1])
+
 #quit the driver
 driver.quit()
