@@ -42,12 +42,20 @@ options = Options()
 options.add_argument("--headless")
 driver = webdriver.Chrome(PATH, options=options)
 
+print(countryName)
+
 driver.get("https://open.spotify.com/search/" + countryName + "/playlists")
 time.sleep(3)
 
 input = driver.find_element(By.XPATH, '//a[@title=\"Top 50 - ' + countryName + '\"]').get_attribute('href')
 playlistLink = input
 print(playlistLink)
+
+for i in countryName:
+    if i == ' ':
+        countryName.replace(' ', '-')
+
+print(countryName)
 
 driver.get("https://www.worldcountriesforkids.com/" + countryName + "/")
 fact = driver.find_element(By.CLASS_NAME,"brief-history-left").text
